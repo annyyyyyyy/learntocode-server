@@ -6,7 +6,7 @@ const server = express();
 
 // CORS headers
 server.use((req, res, next) => {
-    const allowedOrigin = process.env.FRONTEND_URL || '*'; // Use Netlify URL in production
+    const allowedOrigin = process.env.FRONTEND_URL || 'http://localhost:8000'; // Use Netlify URL in production
     res.header('Access-Control-Allow-Origin', allowedOrigin);
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
     res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
@@ -38,7 +38,7 @@ server.use(auth);
 server.use(middlewares);
 
 // Use the router for your routes (API will be prefixed with /api)
-server.use('/api', router);
+server.use(router);
 
 // Start the server
 const PORT = process.env.PORT || 8000; // Dynamic port for Render
